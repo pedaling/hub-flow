@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'hub_flow'
+
+options = {}
+opt_parser = OptionParser.new do |opts|
+  opts.on('-m', '--message MSG') do |m|
+    options[:message] = m
+  end
+end
+
+opt_parser.parse!
+
+if ARGV[0] == 'pull-request' || ARGV[0] == 'pr'
+  HubFlow.pull_request(options[:message])
+end
